@@ -1,0 +1,28 @@
+.botao{
+  height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7ec3f1;
+  color:white;
+  text-decoration: none;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 8px;   
+  
+}
+
+@media screen and (min-width: 1601px) {
+  /* Aqui você pode definir os estilos específicos para telas maiores que 1600px */
+  /* Por exemplo, ajuste o tamanho da fonte, a largura dos elementos, etc. */
+.logo{
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+}
+  /* Adicione mais estilos conforme necessário */
+}

@@ -1,0 +1,22 @@
+
+
+.logo{
+width: 100vw;
+-webkit-box-shadow: -3px 3px 39px -5px rgba(0,0,0,0.57);
+-moz-box-shadow: -3px 3px 39px -5px rgba(0,0,0,0.57);
+box-shadow: -3px 3px 39px -5px rgba(0,0,0,0.57);
+}
+
+@media screen and (min-width: 1601px) {
+  /* Aqui você pode definir os estilos específicos para telas maiores que 1600px */
+  /* Por exemplo, ajuste o tamanho da fonte, a largura dos elementos, etc. */
+.logo{
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+}
+  /* Adicione mais estilos conforme necessário */
+}

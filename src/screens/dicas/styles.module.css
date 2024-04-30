@@ -1,0 +1,22 @@
+/* Dicas.css */
+
+/* Estilos para o contêiner principal */
+.dicasContainer {
+  max-width: 800px;
+  margin: 0 auto;
+padding-top: 10vh;
+position: relative;
+z-index:1;
+}
+
+/* Estilos para o contêiner de cada seção */
+.sectioncontainer {
+  margin-bottom: 30px;
+}
+
+/* Estilos para os títulos das seções */
+.sectiontitle {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
