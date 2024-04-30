@@ -10,7 +10,7 @@ function Forms({ page , setCurrentPage }) {
     
     const [dados , setDados] = useState();
     const [experiencias, setExperiencias] = useState([]);
-
+    const [formacoes, setFormacoes] = useState([]);
 
     function render(pagina) {
         switch (pagina) {
@@ -19,7 +19,7 @@ function Forms({ page , setCurrentPage }) {
             case 2:
                 return <FormExperiencias experiencias={experiencias}  setExperiencias={setExperiencias}  />;
             case 3:
-                    return <FormFormacoes />;
+                    return <FormFormacoes setCurrentPage= {setCurrentPage} setFormacoes={setFormacoes} formacoes={formacoes}/>;
             default:
                 return null; // Tratamento para outros casos, se necessário
         }

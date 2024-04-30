@@ -78,6 +78,7 @@ function FormDados({ dados, setDados, setCurrentPage }) {
           />
         </div>
         <button type="submit" className="btn btn-primary">Avançar</button>
+        
       </form>
     </div>
   );

@@ -23,6 +23,7 @@ function FormExperiencias({ experiencias, setExperiencias }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setExperiencias((prevExperiencias) => [...prevExperiencias, novaExperiencia]);
+    
     setNovaExperiencia({
       local: '',
       cargo: '',
@@ -101,6 +102,7 @@ function FormExperiencias({ experiencias, setExperiencias }) {
         </div>
         <button type="submit" className="btn btn-primary">Adicionar Experiência</button>
       </form>
+      
     </div>
   );
 }
