@@ -9,15 +9,24 @@ function Dicas() {
             
               <div className="card-body">
   <h5 className="card-title">Dicas e Boas Práticas para um Currículo Efetivo</h5>
+  <div>
+
+  <div className={`card  ${styles.largura}`}>
+  <img src="..." className="card-img-top" alt="..."/>
+  <div className="card-body">
+    <h5 className="card-title">Seja Conciso e Objetivo</h5>
+    <p className="card-text">Evite informações desnecessárias e foque no que é relevante para a posição desejada.</p>
+  </div>
+</div>
+
+    
+  </div>
   <div className="row ">
-    <div className="col-md-4">
-      <div className="card mb-3 h-100">
-        <div className="card-body">
-          <h6 className="card-subtitle mb-2 text-muted">1. Seja Conciso e Objetivo</h6>
-          <p className="card-text">Evite informações desnecessárias e foque no que é relevante para a posição desejada.</p>
-        </div>
-      </div>
-    </div>
+
+
+
+
+   
     <div className="col-md-4">
       <div className="card mb-3 h-100">
         <div className="card-body">
