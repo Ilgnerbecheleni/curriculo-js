@@ -35,7 +35,7 @@ function FormExperiencias({ experiencias, setExperiencias }) {
 
   return (
     <div className="container">
-      <h1>Experiencias</h1>
+      <h4>Experiencias</h4>
       <div className="mb-3">
         <h4>Experiências cadastradas:</h4>
         <ul>
@@ -43,9 +43,6 @@ function FormExperiencias({ experiencias, setExperiencias }) {
             <li key={index}>
               <strong>Local:</strong> {experiencia.local}<br />
               <strong>Cargo:</strong> {experiencia.cargo}<br />
-              <strong>Descrição:</strong> {experiencia.descricao}<br />
-              <strong>Início:</strong> {experiencia.inicio}<br />
-              <strong>Fim:</strong> {experiencia.fim}
             </li>
           ))}
         </ul>

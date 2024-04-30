@@ -34,16 +34,14 @@ function FormFormacoes({ formacoes, setFormacoes, onSubmit, setCurrentPage }) {
 
   return (
     <div>
-      <h1>Adicionar Formação</h1>
+      <h4>Adicionar Formação</h4>
       <div>
         {formacoes.map((formacao, index) => (
           <div key={index}>
             <p>Instituição: {formacao.instituicao}</p>
             <p>Tipo de Curso: {formacao.tipoCurso}</p>
             <p>Curso: {formacao.curso}</p>
-            <p>Início: {formacao.inicio}</p>
-            <p>Fim: {formacao.fim}</p>
-            <hr />
+          <hr />
           </div>
         ))}
       </div>
@@ -74,13 +72,15 @@ function FormFormacoes({ formacoes, setFormacoes, onSubmit, setCurrentPage }) {
           </select>
         </div>
         <div className="mb-3">
-          <textarea
+          <input
+            type="text"
             name="curso"
-            placeholder="Curso"
+            placeholder="curso"
             className="form-control"
             value={novaFormacao.curso}
             onChange={handleChange}
           />
+
         </div>
         <div className="mb-3">
           <input

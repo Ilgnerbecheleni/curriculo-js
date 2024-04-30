@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { IoSaveSharp } from "react-icons/io5";
+
 
 function FormDados({ dados, setDados, setCurrentPage }) {
   const [formData, setFormData] = useState(dados || {
@@ -25,7 +27,7 @@ function FormDados({ dados, setDados, setCurrentPage }) {
 
   return (
     <div className="container">
-      <h1>Dados</h1>
+      <h4>Dados</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
@@ -77,7 +79,7 @@ function FormDados({ dados, setDados, setCurrentPage }) {
             placeholder="Estado Civil"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Avançar</button>
+        <button type="submit" className="btn btn-primary m-4"><IoSaveSharp size={24} color={"white"}/></button>
         
       </form>
     </div>
