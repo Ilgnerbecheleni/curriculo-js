@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-
+import styles from './styles.module.css';
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTrash } from 'react-icons/fa';
+import { MdKeyboardReturn } from 'react-icons/md';
 function FormFormacoes({ formacoes, setFormacoes, onSubmit, setCurrentPage }) {
   const [novaFormacao, setNovaFormacao] = useState({
     instituicao: '',
@@ -32,16 +34,28 @@ function FormFormacoes({ formacoes, setFormacoes, onSubmit, setCurrentPage }) {
     });
   };
 
+  const handleDelete = (index) => {
+    if(confirm('Deseja excluir a formaçãoo')){
+      setFormacoes(prevFormacoes => prevFormacoes.filter((_, i) => i !== index));
+    }
+    
+  };
+
   return (
-    <div>
+    <div className='container'>
+       <div className="container m-3 d-flex justify-content-between align-items-center">
+     <button className="btn btn-primary" onClick={()=>{setCurrentPage(2)}}> <FaArrowAltCircleLeft /></button>
+     <button className="btn btn-dark" onClick={()=>{setCurrentPage(4)}}> <FaArrowAltCircleRight /></button>
+      </div>
       <h4>Adicionar Formação</h4>
-      <div>
+      <div className={styles.formacoeslist}>
         {formacoes.map((formacao, index) => (
-          <div key={index}>
+          <div key={index} className='container'>
             <p>Instituição: {formacao.instituicao}</p>
             <p>Tipo de Curso: {formacao.tipoCurso}</p>
             <p>Curso: {formacao.curso}</p>
-          <hr />
+            <button onClick={() => handleDelete(index)} className='btn btn-danger'><FaTrash /></button>
+            <hr />
           </div>
         ))}
       </div>
@@ -104,7 +118,9 @@ function FormFormacoes({ formacoes, setFormacoes, onSubmit, setCurrentPage }) {
         </div>
         <button type="submit" className="btn btn-primary">Adicionar Formação</button>
       </form>
-    
+      <div>
+     
+      </div>
     </div>
   );
 }

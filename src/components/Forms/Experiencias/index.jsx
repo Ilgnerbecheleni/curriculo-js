@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTrash } from "react-icons/fa";
+import { MdKeyboardReturn } from "react-icons/md";
 
-function FormExperiencias({ experiencias, setExperiencias }) {
+function FormExperiencias({ experiencias, setExperiencias , setCurrentPage}) {
 
 
 
@@ -33,16 +35,28 @@ function FormExperiencias({ experiencias, setExperiencias }) {
     });
   };
 
+  const handleDelete = (index) => {
+    if(confirm('Deseja excluir a formaçãoo')){
+      setFormacoes(prevFormacoes => prevFormacoes.filter((_, i) => i !== index));
+    }
+    
+  };
+
   return (
     <div className="container">
+      <div className="container m-3 d-flex justify-content-between align-items-center">
+     <button className="btn btn-primary" onClick={()=>{setCurrentPage(1)}}> <FaArrowAltCircleLeft /></button>
+     <button className="btn btn-dark" onClick={()=>{setCurrentPage(3)}}> <FaArrowAltCircleRight /></button>
+      </div>
       <h4>Experiencias</h4>
       <div className="mb-3">
-        <h4>Experiências cadastradas:</h4>
+     
         <ul>
           {experiencias.map((experiencia, index) => (
-            <li key={index}>
+            <li key={index}  className='container'>
               <strong>Local:</strong> {experiencia.local}<br />
               <strong>Cargo:</strong> {experiencia.cargo}<br />
+              <button onClick={() => handleDelete(index)} className='btn btn-danger'><FaTrash /></button>
             </li>
           ))}
         </ul>
@@ -99,7 +113,7 @@ function FormExperiencias({ experiencias, setExperiencias }) {
         </div>
         <button type="submit" className="btn btn-primary">Adicionar Experiência</button>
       </form>
-      
+
     </div>
   );
 }
