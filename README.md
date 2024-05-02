@@ -7,7 +7,7 @@ Rápido e Eficiente: Utiliza o Vite como bundler, garantindo um ambiente de dese
 Atualizações Rápidas: Com o suporte a HMR (Hot Module Replacement), as alterações no código são refletidas instantaneamente no navegador, sem a necessidade de recarregar a página.
 Plugins Oficiais: Este template inclui suporte para dois plugins oficiais: @vitejs/plugin-react e @vitejs/plugin-react-swc.
 ## Como Usar
-Clone este repositório: git clone https://github.com/seu-usuario/nome-do-repositorio.git
+Clone este repositório: git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/Ilgnerbecheleni/curriculo-js.git)
 
 Acesse o diretório do projeto: cd nome-do-repositorio
 
