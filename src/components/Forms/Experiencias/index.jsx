@@ -1,65 +1,99 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from "react";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTrash } from "react-icons/fa";
 import { MdKeyboardReturn } from "react-icons/md";
 
-function FormExperiencias({ experiencias, setExperiencias , setCurrentPage}) {
-
-
-
+function FormExperiencias({ setCurrentPage }) {
+  const [experiencias, setExperiencias] = useState([]);
+  const [contador, setContador] = useState(0);
   const [novaExperiencia, setNovaExperiencia] = useState({
     local: '',
     cargo: '',
     descricao: '',
     inicio: '',
-    fim: ''
+    fim: '',
+    fimAtual: false, // Novo estado para o checkbox
   });
 
+
+
+  // Carregar dados do localStorage quando o componente é montado
+  useEffect(() => {
+    const savedExperiencias = localStorage.getItem("experiencias");
+    console.log(savedExperiencias)
+    if (savedExperiencias) {
+      console.log(savedExperiencias)
+      setExperiencias(JSON.parse(savedExperiencias));
+     setContador(contador+1);
+    }
+  }, []); // Executa apenas uma vez na montagem do componente
+
+  // Salvar dados no localStorage sempre que 'experiencias' for atualizado
+  useEffect(() => {
+    if(contador >2){
+      localStorage.setItem("experiencias", JSON.stringify(experiencias));
+    }else
+    setContador(3)
+   
+  }, [experiencias]); // Apenas quando 'experiencias' muda
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
     setNovaExperiencia((prevExperiencia) => ({
       ...prevExperiencia,
-      [name]: value
+      [name]: newValue,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setExperiencias((prevExperiencias) => [...prevExperiencias, novaExperiencia]);
-    
+    const experienciaToAdd = { ...novaExperiencia };
+    if (novaExperiencia.fimAtual) {
+      experienciaToAdd.fim = "Até o momento";
+    }
+    setExperiencias((prevExperiencias) => [...prevExperiencias, experienciaToAdd]);
+
     setNovaExperiencia({
-      local: '',
-      cargo: '',
-      descricao: '',
-      inicio: '',
-      fim: ''
+      local: "",
+      cargo: "",
+      descricao: "",
+      inicio: "",
+      fim: "",
+      fimAtual: false,
     });
   };
 
   const handleDelete = (index) => {
-    if(confirm('Deseja excluir a formaçãoo')){
-      setFormacoes(prevFormacoes => prevFormacoes.filter((_, i) => i !== index));
+    if (confirm("Deseja excluir a Experiencia?")) {
+      setExperiencias((prevExperiencias) => prevExperiencias.filter((_, i) => i !== index));
     }
-    
   };
 
   return (
     <div className="container">
-      <div className="container m-3 d-flex justify-content-between align-items-center">
-     <button className="btn btn-primary" onClick={()=>{setCurrentPage(1)}}> <FaArrowAltCircleLeft /></button>
-     <button className="btn btn-dark" onClick={()=>{setCurrentPage(3)}}> <FaArrowAltCircleRight /></button>
+      <div className="container mb-3 d-flex justify-content-between align-items-center">
+        <button className="btn btn-primary" onClick={() => setCurrentPage(1)}>
+          <FaArrowAltCircleLeft />
+        </button>
+        <button className="btn btn-dark" onClick={() => setCurrentPage(3)}>
+          <FaArrowAltCircleRight />
+        </button>
       </div>
       <h4>Experiencias</h4>
-      <div className="mb-3">
-     
-        <ul>
+      <div className="container w-100">
+        
           {experiencias.map((experiencia, index) => (
-            <li key={index}  className='container'>
-              <strong>Local:</strong> {experiencia.local}<br />
-              <strong>Cargo:</strong> {experiencia.cargo}<br />
-              <button onClick={() => handleDelete(index)} className='btn btn-danger'><FaTrash /></button>
-            </li>
+            <div key={index} className="container " >
+           <p className='m-0'>  <strong>Local:</strong> {experiencia.local}</p>
+           <p className='m-0'>  <strong>Cargo:</strong> {experiencia.cargo}</p>
+           <button onClick={() => handleDelete(index)} className="btn btn-danger mt-2">
+           <FaTrash />
+           </button>
+           <hr />           
+            </div>
           ))}
-        </ul>
+        
       </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -110,10 +144,15 @@ function FormExperiencias({ experiencias, setExperiencias , setCurrentPage}) {
             placeholder="Fim"
             className="form-control"
           />
+          <label className="mt-3">
+            <input type="checkbox" name="fimAtual" checked={novaExperiencia.fimAtual} onChange={handleChange} />
+            Até o momento
+          </label>
         </div>
-        <button type="submit" className="btn btn-primary">Adicionar Experiência</button>
+        <button type="submit" className="btn btn-primary">
+          Adicionar Experiência
+        </button>
       </form>
-
     </div>
   );
 }

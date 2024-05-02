@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoSaveSharp } from "react-icons/io5";
-
 
 function FormDados({ dados, setDados, setCurrentPage }) {
   const [formData, setFormData] = useState(dados || {
@@ -11,12 +10,35 @@ function FormDados({ dados, setDados, setCurrentPage }) {
     estadoCivil: ''
   });
 
+  useEffect(() => {
+    const savedData = localStorage.getItem('dados');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('dados', JSON.stringify(formData));
+  }, [formData]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+    if (name === "dataNascimento") {
+      // Calcular idade a partir da data de nascimento
+      const dataNascimento = new Date(value);
+      const hoje = new Date();
+      const idade = hoje.getFullYear() - dataNascimento.getFullYear();
+      setFormData(prevData => ({
+        ...prevData,
+        [name]: value,
+        idade: idade
+      }));
+    } else {
+      setFormData(prevData => ({
+        ...prevData,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -70,17 +92,21 @@ function FormDados({ dados, setDados, setCurrentPage }) {
           />
         </div>
         <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
+          <select
+            className="form-select"
             name="estadoCivil"
             value={formData.estadoCivil}
             onChange={handleChange}
             placeholder="Estado Civil"
-          />
+          >
+            <option value="">Selecione o estado civil</option>
+            <option value="Solteiro">Solteiro</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viúvo">Viúvo</option>
+          </select>
         </div>
-        <button type="submit" className="btn btn-primary m-4"><IoSaveSharp size={24} color={"white"}/></button>
-        
+        <button type="submit" className="btn btn-primary m-4"><IoSaveSharp size={24} color={"white"} /></button>
       </form>
     </div>
   );

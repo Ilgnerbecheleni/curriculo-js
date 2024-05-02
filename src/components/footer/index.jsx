@@ -3,9 +3,15 @@ import styles from './styles.module.css';
 
 function Footer() {
   return (
-    <footer className={styles.rodape}>
-      <h4>Criado por Ilgner &copy;</h4>
-    </footer>
+<div className="container">
+  <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div className="col-md-4 d-flex align-items-center">
+    
+      <span className="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+    </div>
+
+  </footer>
+</div>
   )
 }
 
