@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function FormHabilidades({ setCurrentPage }) {
   const [habilidades, setHabilidades] = useState([]);
   const [novaHabilidade, setNovaHabilidade] = useState('');
 
   const [contador, setContador] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const savedHabilidades = localStorage.getItem('habilidades');
     if (savedHabilidades) {
@@ -38,7 +39,7 @@ function FormHabilidades({ setCurrentPage }) {
       alert('Preencha suas habilidades!');
     } else {
       // Lógica para gerar o currículo
-      window.location.replace('/pagecurriculo')
+      navigate('/pagecurriculo');
       console.log('Currículo gerado com sucesso!');
     }
   };
